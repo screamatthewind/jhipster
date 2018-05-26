@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "periodType",
+            "otherEntityName": "periodType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "servicePackage",
+            "otherEntityName": "servicePackage",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "period",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "enabled",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "addDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20180421131234",
+    "javadoc": "The Tariff entity.",
+    "entityTableName": "tariff",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

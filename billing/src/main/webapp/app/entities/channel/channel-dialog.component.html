@@ -1,0 +1,86 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myChannelLabel">Create or edit a Channel</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!channel.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="channel.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_number">Number</label>
+            <input type="number" class="form-control" name="number" id="field_number"
+                [(ngModel)]="channel.number" required/>
+            <div [hidden]="!(editForm.controls.number?.dirty && editForm.controls.number?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.number?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.number?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="channel.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_link">Link</label>
+            <input type="text" class="form-control" name="link" id="field_link"
+                [(ngModel)]="channel.link" required/>
+            <div [hidden]="!(editForm.controls.link?.dirty && editForm.controls.link?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.link?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_epgCorrection">Epg Correction</label>
+            <input type="number" class="form-control" name="epgCorrection" id="field_epgCorrection"
+                [(ngModel)]="channel.epgCorrection" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_xmltvId">Xmltv Id</label>
+            <input type="number" class="form-control" name="xmltvId" id="field_xmltvId"
+                [(ngModel)]="channel.xmltvId" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_addDate">Add Date</label>
+            <div class="d-flex">
+                <input id="field_addDate" type="datetime-local" class="form-control" name="addDate" [(ngModel)]="channel.addDate"
+                />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_genre">Genre</label>
+            <select class="form-control" id="field_genre" name="genre" [(ngModel)]="channel.genreId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="genreOption.id" *ngFor="let genreOption of genres; trackBy: trackGenreById">{{genreOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

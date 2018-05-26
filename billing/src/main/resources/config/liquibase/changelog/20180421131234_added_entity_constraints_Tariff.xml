@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Tariff.
+    -->
+    <changeSet id="20180421131234-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="period_type_id"
+                                 baseTableName="tariff"
+                                 constraintName="fk_tariff_period_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="period_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="service_package_id"
+                                 baseTableName="tariff"
+                                 constraintName="fk_tariff_service_package_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="service_package"/>
+
+    </changeSet>
+</databaseChangeLog>

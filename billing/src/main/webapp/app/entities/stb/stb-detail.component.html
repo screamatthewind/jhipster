@@ -1,0 +1,50 @@
+
+<div *ngIf="stb">
+    <h2><span>Stb</span> {{stb.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Mac</span></dt>
+        <dd>
+            <span>{{stb.mac}}</span>
+        </dd>
+        <dt><span>Ip Address</span></dt>
+        <dd>
+            <span>{{stb.ipAddress}}</span>
+        </dd>
+        <dt><span>Enabled</span></dt>
+        <dd>
+            <span>{{stb.enabled}}</span>
+        </dd>
+        <dt><span>Add Date</span></dt>
+        <dd>
+            <span>{{stb.addDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+            <div *ngIf="stb.customerId">
+                <a [routerLink]="['/customer', stb.customerId]">{{stb.customerId}}</a>
+            </div>
+        </dd>
+        <dt><span>Tariff</span></dt>
+        <dd>
+            <div *ngIf="stb.tariffId">
+                <a [routerLink]="['/tariff', stb.tariffId]">{{stb.tariffId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'stb/'+ stb.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

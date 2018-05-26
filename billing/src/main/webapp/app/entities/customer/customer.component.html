@@ -1,0 +1,90 @@
+<div>
+    <h2>
+        <span>Customers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-customer" [routerLink]="['/', { outlets: { popup: ['customer-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Customer
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="customers">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="accountNumber"><span>Account Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="firstName"><span>First Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastName"><span>Last Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="address1"><span>Address 1</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="address2"><span>Address 2</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="city"><span>City</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="state"><span>State</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="zip"><span>Zip</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phone"><span>Phone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="email"><span>Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="username"><span>Username</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="password"><span>Password</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="enabled"><span>Enabled</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="addDate"><span>Add Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="agentId"><span>Agent</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let customer of customers ;trackBy: trackId">
+                <td><a [routerLink]="['../customer', customer.id ]">{{customer.id}}</a></td>
+                <td>{{customer.accountNumber}}</td>
+                <td>{{customer.firstName}}</td>
+                <td>{{customer.lastName}}</td>
+                <td>{{customer.address1}}</td>
+                <td>{{customer.address2}}</td>
+                <td>{{customer.city}}</td>
+                <td>{{customer.state}}</td>
+                <td>{{customer.zip}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.username}}</td>
+                <td>{{customer.password}}</td>
+                <td>{{customer.enabled}}</td>
+                <td>{{customer.addDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="customer.agentId">
+                        <a [routerLink]="['../agent', customer.agentId  ]" >{{customer.agentId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../customer', customer.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer/'+ customer.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer/'+ customer.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,150 @@
+/**
+ * Agent entity.
+ */
+entity Agent {
+    accountNumber String required,
+	name String required,
+	address1 String required,
+	address2 String,
+	city String required,
+	state String required,
+	zip String required,
+	phone String required,
+	email String,
+    username String,
+    password String,
+    enabled Boolean,
+    credit Float,
+    enabled Boolean,
+	addDate ZonedDateTime
+}
+
+/**
+ * Template entity.
+ */
+entity Template {
+	name String
+}
+
+/**
+ * Customer entity.
+ */
+entity Customer {
+    accountNumber String required,
+	firstName String required,
+    lastName String required,
+	address1 String required,
+	address2 String,
+	city String required,
+	state String required,
+	zip String required,
+	phone String required,
+	email String,
+    username String,
+    password String,
+    enabled Boolean,
+	addDate ZonedDateTime
+}
+
+/**
+ * Payment entity.
+ */
+entity Payment {
+	amount Float required
+	addDate ZonedDateTime
+}
+
+/**
+ * Stb entity.
+ */
+entity Stb {
+	mac String required,
+	ipAddress String
+    enabled Boolean,
+	addDate ZonedDateTime
+}
+
+/**
+ * The Channel entity.
+ */
+entity Channel {
+	number Integer required,
+	name String required,
+	link String required
+	epgCorrection Integer,
+	xmltvId Integer,
+	addDate ZonedDateTime  
+}
+
+/**
+ * Genre entity.
+ */
+entity Genre {
+	name String
+}
+
+/**
+ * The Tariff entity.
+ */
+entity Tariff {
+	name String,
+    price Float,
+    period Integer,
+    enabled Boolean,
+	addDate ZonedDateTime  
+}
+
+entity PeriodType {
+  	name String
+}
+
+/**
+ * The ServicePackages entity.
+ */
+entity ServicePackage {
+	name String,
+    price Float,
+    enabled Boolean,
+	addDate ZonedDateTime  
+}
+
+relationship ManyToOne {
+	Agent{template} to Template
+}
+
+relationship OneToMany {
+	ServicePackage{tariff} to Tariff
+}
+
+relationship OneToMany {
+	Channel{servicePackage} to ServicePackage
+}
+
+relationship ManyToOne {
+	Stb{customer} to Customer
+}
+
+relationship ManyToOne {
+	Payment{customer} to Customer
+}
+
+relationship ManyToOne {
+	Channel{genre} to Genre
+}
+
+relationship ManyToOne {
+  	Stb{tariff} to Tariff
+}
+
+relationship ManyToOne {
+	Tariff{periodType} to PeriodType
+}
+
+relationship ManyToOne {
+  Customer{agent} to Agent
+}
+
+paginate Channel, Customer, Stb with infinite-scroll
+
+dto * with mapstruct
+

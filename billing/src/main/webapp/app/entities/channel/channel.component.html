@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Channels</span>
+        <button class="btn btn-primary float-right jh-create-entity create-channel" [routerLink]="['/', { outlets: { popup: ['channel-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Channel
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="channels">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="number"><span>Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span>Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="link"><span>Link</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="epgCorrection"><span>Epg Correction</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="xmltvId"><span>Xmltv Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="addDate"><span>Add Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="genreId"><span>Genre</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let channel of channels ;trackBy: trackId">
+                <td><a [routerLink]="['../channel', channel.id ]">{{channel.id}}</a></td>
+                <td>{{channel.number}}</td>
+                <td>{{channel.name}}</td>
+                <td>{{channel.link}}</td>
+                <td>{{channel.epgCorrection}}</td>
+                <td>{{channel.xmltvId}}</td>
+                <td>{{channel.addDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="channel.genreId">
+                        <a [routerLink]="['../genre', channel.genreId  ]" >{{channel.genreId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../channel', channel.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'channel/'+ channel.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'channel/'+ channel.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

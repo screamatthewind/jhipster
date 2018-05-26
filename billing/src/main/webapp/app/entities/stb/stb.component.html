@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span>Stbs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-stb" [routerLink]="['/', { outlets: { popup: ['stb-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Stb
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="stbs">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mac"><span>Mac</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ipAddress"><span>Ip Address</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="enabled"><span>Enabled</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="addDate"><span>Add Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="customerId"><span>Customer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tariffId"><span>Tariff</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let stb of stbs ;trackBy: trackId">
+                <td><a [routerLink]="['../stb', stb.id ]">{{stb.id}}</a></td>
+                <td>{{stb.mac}}</td>
+                <td>{{stb.ipAddress}}</td>
+                <td>{{stb.enabled}}</td>
+                <td>{{stb.addDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="stb.customerId">
+                        <a [routerLink]="['../customer', stb.customerId  ]" >{{stb.customerId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="stb.tariffId">
+                        <a [routerLink]="['../tariff', stb.tariffId  ]" >{{stb.tariffId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../stb', stb.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'stb/'+ stb.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'stb/'+ stb.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

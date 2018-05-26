@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span>Service Packages</span>
+        <button class="btn btn-primary float-right jh-create-entity create-service-package" [routerLink]="['/', { outlets: { popup: ['service-package-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Service Package
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="servicePackages">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Price</span></th>
+            <th><span>Enabled</span></th>
+            <th><span>Add Date</span></th>
+            <th><span>Channel</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let servicePackage of servicePackages ;trackBy: trackId">
+                <td><a [routerLink]="['../service-package', servicePackage.id ]">{{servicePackage.id}}</a></td>
+                <td>{{servicePackage.name}}</td>
+                <td>{{servicePackage.price}}</td>
+                <td>{{servicePackage.enabled}}</td>
+                <td>{{servicePackage.addDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="servicePackage.channelId">
+                        <a [routerLink]="['../channel', servicePackage.channelId  ]" >{{servicePackage.channelId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../service-package', servicePackage.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'service-package/'+ servicePackage.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'service-package/'+ servicePackage.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

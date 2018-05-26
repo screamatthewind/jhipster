@@ -1,0 +1,38 @@
+/* ==========================================================================
+Main page styles
+========================================================================== */
+
+#rfb-home-intro {
+    background: url("../../content/images/beer-light.jpg");
+    background-size: contain;
+    padding: 20px 0px 60px 0px;
+}
+
+.display-4 {
+    font-family: 'Walter Turncoat', cursive;
+    margin-top:10px;
+}
+
+.events-header {
+    font-family: 'Walter Turncoat', cursive;
+    font-size: 18px;
+    color:#ffffff;
+    text-align: center;
+    margin-top:10px;
+}
+
+.img-border-white {
+    border: solid #ffffff 5px;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+
+}
+

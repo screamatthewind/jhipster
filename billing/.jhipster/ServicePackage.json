@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "channel",
+            "otherEntityName": "channel",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tariff",
+            "otherEntityName": "tariff",
+            "otherEntityRelationshipName": "servicePackage"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "enabled",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "addDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20180421131236",
+    "javadoc": "The ServicePackages entity.",
+    "entityTableName": "service_package",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

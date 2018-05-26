@@ -1,0 +1,27 @@
+Features:
+  Login by user/password or Facebook
+  Facebook login needs to capture email
+  Lost Password Feature
+  Track Run Locations and scheduls
+  Create a unique code for runners to associate themselves with a particular run
+  When use enters run code, system will log code used, user, and date / time
+  Change password
+  change email
+  Set Home Location
+  Each location will show a leader board of users (top runners)
+  System lock out for 10 minutes after 10 failed login attempts
+
+Security Roles:
+  Root - System Admin
+  Admin
+    super user for application
+    add organizers
+    promote / demote uses to admin or organizer
+    create run locations
+    set run schedules
+    access unique run code
+  Organizer - Able to access unique run code
+  Runner - Able to enter unique run code
+  
+Continuous Integration Builds (CI Builds)
+  Circle CI

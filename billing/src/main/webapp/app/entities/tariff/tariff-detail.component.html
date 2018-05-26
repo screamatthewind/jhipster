@@ -1,0 +1,54 @@
+
+<div *ngIf="tariff">
+    <h2><span>Tariff</span> {{tariff.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{tariff.name}}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+            <span>{{tariff.price}}</span>
+        </dd>
+        <dt><span>Period</span></dt>
+        <dd>
+            <span>{{tariff.period}}</span>
+        </dd>
+        <dt><span>Enabled</span></dt>
+        <dd>
+            <span>{{tariff.enabled}}</span>
+        </dd>
+        <dt><span>Add Date</span></dt>
+        <dd>
+            <span>{{tariff.addDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Period Type</span></dt>
+        <dd>
+            <div *ngIf="tariff.periodTypeId">
+                <a [routerLink]="['/period-type', tariff.periodTypeId]">{{tariff.periodTypeId}}</a>
+            </div>
+        </dd>
+        <dt><span>Service Package</span></dt>
+        <dd>
+            <div *ngIf="tariff.servicePackageId">
+                <a [routerLink]="['/service-package', tariff.servicePackageId]">{{tariff.servicePackageId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tariff/'+ tariff.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

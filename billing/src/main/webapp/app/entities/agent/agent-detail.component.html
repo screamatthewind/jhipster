@@ -1,0 +1,84 @@
+
+<div *ngIf="agent">
+    <h2><span>Agent</span> {{agent.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Account Number</span></dt>
+        <dd>
+            <span>{{agent.accountNumber}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{agent.name}}</span>
+        </dd>
+        <dt><span>Address 1</span></dt>
+        <dd>
+            <span>{{agent.address1}}</span>
+        </dd>
+        <dt><span>Address 2</span></dt>
+        <dd>
+            <span>{{agent.address2}}</span>
+        </dd>
+        <dt><span>City</span></dt>
+        <dd>
+            <span>{{agent.city}}</span>
+        </dd>
+        <dt><span>State</span></dt>
+        <dd>
+            <span>{{agent.state}}</span>
+        </dd>
+        <dt><span>Zip</span></dt>
+        <dd>
+            <span>{{agent.zip}}</span>
+        </dd>
+        <dt><span>Phone</span></dt>
+        <dd>
+            <span>{{agent.phone}}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{agent.email}}</span>
+        </dd>
+        <dt><span>Username</span></dt>
+        <dd>
+            <span>{{agent.username}}</span>
+        </dd>
+        <dt><span>Password</span></dt>
+        <dd>
+            <span>{{agent.password}}</span>
+        </dd>
+        <dt><span>Enabled</span></dt>
+        <dd>
+            <span>{{agent.enabled}}</span>
+        </dd>
+        <dt><span>Credit</span></dt>
+        <dd>
+            <span>{{agent.credit}}</span>
+        </dd>
+        <dt><span>Add Date</span></dt>
+        <dd>
+            <span>{{agent.addDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Template</span></dt>
+        <dd>
+            <div *ngIf="agent.templateId">
+                <a [routerLink]="['/template', agent.templateId]">{{agent.templateId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'agent/'+ agent.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

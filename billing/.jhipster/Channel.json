@@ -1,0 +1,59 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "servicePackage",
+            "otherEntityName": "servicePackage",
+            "otherEntityRelationshipName": "channel"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "genre",
+            "otherEntityName": "genre",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "number",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "link",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "epgCorrection",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "xmltvId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "addDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20180421131232",
+    "javadoc": "The Channel entity.",
+    "entityTableName": "channel",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

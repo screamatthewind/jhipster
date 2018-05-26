@@ -1,0 +1,16 @@
+version: '2'
+services:
+    rfbloyalty-app:
+        image: springframeworkguru/rfbloyalty
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://rfbloyalty-mysql:3306/rfbloyalty?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+            - SPRING_DATASOURCE_USERNAME=
+            - SPRING_DATASOURCE_PASSWORD=
+        ports:
+            - 8080:8080
+    rfbloyalty-mysql:
+        extends:
+            file: mysql.yml
+            service: rfbloyalty-mysql

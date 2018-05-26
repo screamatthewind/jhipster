@@ -1,0 +1,52 @@
+
+<div *ngIf="channel">
+    <h2><span>Channel</span> {{channel.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Number</span></dt>
+        <dd>
+            <span>{{channel.number}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{channel.name}}</span>
+        </dd>
+        <dt><span>Link</span></dt>
+        <dd>
+            <span>{{channel.link}}</span>
+        </dd>
+        <dt><span>Epg Correction</span></dt>
+        <dd>
+            <span>{{channel.epgCorrection}}</span>
+        </dd>
+        <dt><span>Xmltv Id</span></dt>
+        <dd>
+            <span>{{channel.xmltvId}}</span>
+        </dd>
+        <dt><span>Add Date</span></dt>
+        <dd>
+            <span>{{channel.addDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Genre</span></dt>
+        <dd>
+            <div *ngIf="channel.genreId">
+                <a [routerLink]="['/genre', channel.genreId]">{{channel.genreId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'channel/'+ channel.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

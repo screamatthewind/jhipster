@@ -1,0 +1,44 @@
+
+<div *ngIf="servicePackage">
+    <h2><span>Service Package</span> {{servicePackage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{servicePackage.name}}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+            <span>{{servicePackage.price}}</span>
+        </dd>
+        <dt><span>Enabled</span></dt>
+        <dd>
+            <span>{{servicePackage.enabled}}</span>
+        </dd>
+        <dt><span>Add Date</span></dt>
+        <dd>
+            <span>{{servicePackage.addDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Channel</span></dt>
+        <dd>
+            <div *ngIf="servicePackage.channelId">
+                <a [routerLink]="['/channel', servicePackage.channelId]">{{servicePackage.channelId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'service-package/'+ servicePackage.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

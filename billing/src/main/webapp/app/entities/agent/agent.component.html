@@ -1,0 +1,90 @@
+<div>
+    <h2>
+        <span>Agents</span>
+        <button class="btn btn-primary float-right jh-create-entity create-agent" [routerLink]="['/', { outlets: { popup: ['agent-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Agent
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="agents">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Account Number</span></th>
+            <th><span>Name</span></th>
+            <th><span>Address 1</span></th>
+            <th><span>Address 2</span></th>
+            <th><span>City</span></th>
+            <th><span>State</span></th>
+            <th><span>Zip</span></th>
+            <th><span>Phone</span></th>
+            <th><span>Email</span></th>
+            <th><span>Username</span></th>
+            <th><span>Password</span></th>
+            <th><span>Enabled</span></th>
+            <th><span>Credit</span></th>
+            <th><span>Add Date</span></th>
+            <th><span>Template</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let agent of agents ;trackBy: trackId">
+                <td><a [routerLink]="['../agent', agent.id ]">{{agent.id}}</a></td>
+                <td>{{agent.accountNumber}}</td>
+                <td>{{agent.name}}</td>
+                <td>{{agent.address1}}</td>
+                <td>{{agent.address2}}</td>
+                <td>{{agent.city}}</td>
+                <td>{{agent.state}}</td>
+                <td>{{agent.zip}}</td>
+                <td>{{agent.phone}}</td>
+                <td>{{agent.email}}</td>
+                <td>{{agent.username}}</td>
+                <td>{{agent.password}}</td>
+                <td>{{agent.enabled}}</td>
+                <td>{{agent.credit}}</td>
+                <td>{{agent.addDate | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="agent.templateDTO">
+                        <a [routerLink]="['../template', agent.templateDTO.id  ]" >{{agent.templateDTO.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../agent', agent.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'agent/'+ agent.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'agent/'+ agent.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
